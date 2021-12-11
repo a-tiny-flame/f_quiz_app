@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../components/components.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  static const _questions = <String>[
-    'What\'s your favorite color?',
-    'What\'s your favorite animal?'
-  ];
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final questions =  <String>[
+    'What\'s your favorite color?',
+    'What\'s your favorite animal?'
+  ];
+
   var _questionIndex = 0;
 
   @override
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text(HomeScreen._questions[_questionIndex]),
+            Question(questions[_questionIndex]),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _answerQuestion,
