@@ -10,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final questions =  <String>[
+  final questions = <String>[
     'What\'s your favorite color?',
     'What\'s your favorite animal?'
   ];
@@ -23,27 +23,23 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Quiz App'),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Question(questions[_questionIndex]),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: _answerQuestion,
-              child: const Text('Answer 1'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Answer 1'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              // ignore: prefer_const_constructors
-              child: Text('Answer 1'),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          Question(questions[_questionIndex]),
+          ElevatedButton(
+            onPressed: _answerQuestion,
+            child: const Text('Answer 1'),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Answer 1'),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            // ignore: prefer_const_constructors
+            child: Text('Answer 1'),
+          ),
+        ],
       ),
     );
   }
