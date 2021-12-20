@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/components/aswer.dart';
 
 import '../components/components.dart';
+import '../models/models.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  static const questions = <Map<String, Object>>[
-    {
-      'questionTest': 'What\'s your favorite color?',
-      'answwer': <String>['Black', 'Red', 'Green', 'White'],
-    },
-    {
-      'questionTest': 'What\'s your favorite animal?',
-      'answwer': <String>['Rabbit', 'Snake', 'Elephant', 'Lion'],
-    },
-    {
-      'questionTest': 'What\'s your favorite instructor?',
-      'answwer': <String>['Max', 'Max', 'Max', 'Max'],
-    },
-  ];
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,10 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: [
-            Question(questionText: HomeScreen.questions[_questionIndex]),
-            Answer(selectHandler: _answerQuestion),
-            Answer(selectHandler: _answerQuestion),
-            Answer(selectHandler: _answerQuestion),
+            Question(Questions.questions[_questionIndex].question),
+            ...Questions.questions[_questionIndex].answers
+                .map((answer) =>
+                    Answer(answerText: answer, selectHandler: _answerQuestion))
+                .toList(),
           ],
         ),
       ),
@@ -49,7 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _answerQuestion() {
     setState(() {
-      _questionIndex = _questionIndex == 1 ? 0 : 1;
+      print(_questionIndex);
+      _questionIndex = _questionIndex == Questions.questions.length - 1
+          ? 0
+          : _questionIndex + 1;
     });
   }
 }
