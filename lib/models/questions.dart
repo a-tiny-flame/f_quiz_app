@@ -10,6 +10,7 @@ class Questions {
         question: 'What\'s your favorite instructor?',
         answers: ['Max', 'Max', 'Max', 'Max']),
   ];
+
 }
 
 class _Question {

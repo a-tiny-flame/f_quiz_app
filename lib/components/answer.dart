@@ -12,9 +12,12 @@ class Answer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: selectHandler,
-      child: Text(answerText),
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: selectHandler,
+        child: Text(answerText),
+      ),
     );
   }
 }

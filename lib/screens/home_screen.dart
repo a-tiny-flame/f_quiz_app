@@ -20,25 +20,19 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Quiz App'),
       ),
       body: Center(
-        child: Column(
-          children: [
-            Question(Questions.questions[_questionIndex].question),
-            ...Questions.questions[_questionIndex].answers
-                .map((answer) =>
-                    Answer(answerText: answer, selectHandler: _answerQuestion))
-                .toList(),
-          ],
-        ),
+        child: _questionIndex < Questions.questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+              )
+            : const Text('You did it'),
       ),
     );
   }
 
   void _answerQuestion() {
     setState(() {
-      print(_questionIndex);
-      _questionIndex = _questionIndex == Questions.questions.length - 1
-          ? 0
-          : _questionIndex + 1;
+      _questionIndex++;
     });
   }
 }
