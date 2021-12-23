@@ -27,7 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
               )
-            : Result(resultScore: _totalScore),
+            : Result(
+                resultScore: _totalScore,
+                resetFunction: _resetQuiz,
+              ),
       ),
     );
   }
@@ -36,6 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
     _totalScore += score;
     setState(() {
       _questionIndex++;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 }

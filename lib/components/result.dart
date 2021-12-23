@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  const Result({Key? key, required this.resultScore}) : super(key: key);
+  const Result(
+      {Key? key, required this.resultScore, required this.resetFunction})
+      : super(key: key);
 
   final int resultScore;
+  final VoidCallback resetFunction;
 
   String get resultPhrase {
     if (resultScore <= 8) {
@@ -19,12 +22,23 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      resultPhrase,
-      style: const TextStyle(
-        fontSize: 36,
-        fontWeight: FontWeight.bold,
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          resultPhrase,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        TextButton(
+          onPressed: resetFunction,
+          style: TextButton.styleFrom(primary: Colors.deepPurple),
+          child: const Text('Restart'),
+        )
+      ],
     );
   }
 }
