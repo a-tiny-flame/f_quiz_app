@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/components/result.dart';
 
 import '../components/components.dart';
 import '../models/models.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
               )
-            : const Text('You did it'),
+            : Result(resultScore: _totalScore),
       ),
     );
   }
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex++;
     });

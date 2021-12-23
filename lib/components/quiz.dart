@@ -4,9 +4,11 @@ import 'components.dart';
 import '../models/models.dart';
 
 class Quiz extends StatelessWidget {
-  const Quiz({Key? key, required this.answerQuestion, required this.questionIndex}) : super(key: key);
+  const Quiz(
+      {Key? key, required this.answerQuestion, required this.questionIndex})
+      : super(key: key);
 
-  final VoidCallback answerQuestion;
+  final Function answerQuestion;
   final int questionIndex;
 
   @override
@@ -17,8 +19,8 @@ class Quiz extends StatelessWidget {
         ...Questions.questions[questionIndex].answers
             .map(
               (answer) => Answer(
-                answerText: answer,
-                selectHandler: answerQuestion,
+                answerText: answer.text,
+                selectHandler: () => answerQuestion(answer.score),
               ),
             )
             .toList(),
